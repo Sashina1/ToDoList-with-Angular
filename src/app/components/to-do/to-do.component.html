@@ -1,1 +1,40 @@
+<div class="container">
+  <div class="contWhite">
+    <mat-card class="example-card" appearance="outlined">
+      <div class="banner">
+        <mat-icon>signal_cellular_alt</mat-icon>
+        <span>TIM</span>
+        <div class="end-icons">
+          <mat-icon class="end">wifi</mat-icon>
+          <mat-icon class="end">battery_full_alt</mat-icon>
+        </div>
+      </div>
+      <mat-card-header>
+        <mat-card-title class="title">To Do List</mat-card-title>
+        <p class="subtitle">What do you need to do?</p>
+      </mat-card-header>
 
+      <mat-card-content class="example-card-content">
+        @for (task of tasks; track task.name) {
+          <div class="task-item" [ngClass]="{'transparent': task.completed}">
+            <mat-checkbox [checked]="task.completed" (change)="changeTask(task)">
+              {{ task.name }}
+            </mat-checkbox>
+            <button mat-icon-button color="warn" (click)="deleteTask(task)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        }
+      </mat-card-content>
+
+      <mat-card-footer class="example-card-footer">
+        <form (ngSubmit)="addTask()">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Add a new task" [(ngModel)]="newTask" name="newTask" />
+          </mat-form-field>
+          <button class="but" mat-raised-button color="primary" type="submit">Add Task</button>
+        </form>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+</div>
